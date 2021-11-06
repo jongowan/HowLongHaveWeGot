@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Category Page</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="../css/template-category-page.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script>
+
+            function expand(idString) {
+                switch (idString)
+                {
+                    case "end1Info":
+                    case "end2Info":
+                    case "end3Info":
+                        if ($("#" + idString).attr("hidden") == "hidden")
+                        {
+                            close();
+                            $("#" + idString).removeAttr("hidden");
+                        }
+                        else
+                        {
+                            close();
+                        }
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            function close() {
+                $(".endInfo").attr("hidden", "hidden");
+            }
+
+        </script>
+    </head>
+    <body>
+        <div id="categoryPageWrapper">
+            <div class="endOptionsContainer">
+                <h2 class="endTitle" onclick="expand('end1Info')">Heat Death</h2>
+                <p id="end1Info" class="endInfo" hidden>"If the Universe holds enough matter, including dark matter, the combined gravitational attraction of everything will gradually halt this expansion and precipitate the ultimate collapse. Over time, galaxies, then individual stars, will smash into each other more frequently, killing off any life on nearby planets. In the final moments, as densities and temperatures soar in a contracting inferno, all that remains will extinguish in a single point." - Jaime Trosper</p>
+                <h2 class="endTitle" onclick="expand('end2Info')">Big Crunch</h2>
+                <p id="end2Info" class="endInfo" hidden>"If the Universe holds enough matter, including dark matter, the combined gravitational attraction of everything will gradually halt this expansion and precipitate the ultimate collapse. Over time, galaxies, then individual stars, will smash into each other more frequently, killing off any life on nearby planets. In the final moments, as densities and temperatures soar in a contracting inferno, all that remains will extinguish in a single point." - Ramin Skibba</p>
+                <h2 class="endTitle" onclick="expand('end3Info')">Big Slurp</h2>
+                <p id="end3Info" class="endInfo" hidden>"Our universe might experience a catastrophic event when a “bubble” from another alternate universe appears in ours. If this bubble exists in a lower-energy state than our bubble. the universe could be completely annihilated.
+
+In essence, it would cause all the protons in all matter in our universe to decay. By proxy, so would we. If that doesn’t sound unpleasant enough, this sort of a vacuum metastability event could happen at virtually any moment, anywhere in our universe. The bubble could pop over and start expanding at light-speed until it swallowed us entirely." - Jaime Trosper</p>
+            </div>
+        </div>
+    </body>
+</html>

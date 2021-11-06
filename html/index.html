@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Category Page</title>
+        <meta charset="utf-8">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="../css/template-category-page.css">
+        <script>
+
+            function expand(idString) {
+                switch (idString)
+                {
+                    case "end1Info":
+                    case "end2Info":
+                    case "end3Info":
+                        if ($("#" + idString).attr("hidden") == "hidden")
+                        {
+                            close();
+                            $("#" + idString).removeAttr("hidden");
+                        }
+                        else
+                        {
+                            close();
+                        }
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            function close() {
+                $(".endInfo").attr("hidden", "hidden");
+            }
+
+        </script>
+    </head>
+    <body>
+        <h1 id="homeTitle">World Ending Events</h1>
+        <div id="categoryPageWrapper">
+            <div class="endOptionsContainer">
+                <h2 class="endTitle" onclick="expand('end1Info')">Earth Level</h2>
+                <p id="end1Info" class="endInfo" hidden>At this level, most or all of human life on earth is threatened. These kinds of threats can include, but are not limited to: Global Warming, Meteors, Mutually Assured Destruction, and much more!</p>
+                <h2 class="endTitle" onclick="expand('end2Info')">Universe Level</h2>
+                <p id="end2Info" class="endInfo" hidden>At this level, most or all of human life in the universe is threatened. While we haven't formed any setlements anywhere other than Earth yet, we may one day. These, among others, would then become the main threats to continued life. These kinds of threats can include, but are not limited to: Heat Death of the Universe, the Big Slurp, the Big Crunch, and much more!</p>
+            </div>
+        </div>
+    </body>
+</html>
