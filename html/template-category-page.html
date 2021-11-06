@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Category Page</title>
+        <meta charset="utf-8">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script>
+
+            function expand(idString) {
+                switch (idString)
+                {
+                    case "end1Info":
+                    case "end2Info":
+                    case "end3Info":
+                        if ($("#" + idString).attr("hidden") == "hidden")
+                        {
+                            close();
+                            $("#" + idString).removeAttr("hidden");
+                        }
+                        else
+                        {
+                            close();
+                        }
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            function close() {
+                $(".endInfo").attr("hidden", "hidden");
+            }
+
+        </script>
+    </head>
+    <body>
+        <div id="categoryPageWrapper">
+            <div class="endOptionsContainer">
+                <h2 class="endTitle" onclick="expand('end1Info')">End 1</h1>
+                <p id="end1Info" class="endInfo" hidden>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque lobortis, nunc id ultrices rutrum, augue ligula semper nulla, eget scelerisque urna lacus in leo. Nulla lacinia, urna eget fringilla finibus, augue erat tristique ante, a convallis arcu lectus vel velit. Etiam fermentum condimentum lorem. Phasellus sagittis arcu non aliquet molestie. Maecenas placerat venenatis enim. Aliquam purus turpis, molestie ultricies turpis in, congue bibendum mi. Nulla vel elementum nisl, hendrerit luctus diam.</p>
+                <h2 class="endTitle" onclick="expand('end2Info')">End 2</h1>
+                <p id="end2Info" class="endInfo" hidden>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque lobortis, nunc id ultrices rutrum, augue ligula semper nulla, eget scelerisque urna lacus in leo. Nulla lacinia, urna eget fringilla finibus, augue erat tristique ante, a convallis arcu lectus vel velit. Etiam fermentum condimentum lorem. Phasellus sagittis arcu non aliquet molestie. Maecenas placerat venenatis enim. Aliquam purus turpis, molestie ultricies turpis in, congue bibendum mi. Nulla vel elementum nisl, hendrerit luctus diam.</p>
+                <h2 class="endTitle" onclick="expand('end3Info')">End 3</h1>
+                <p id="end3Info" class="endInfo" hidden>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque lobortis, nunc id ultrices rutrum, augue ligula semper nulla, eget scelerisque urna lacus in leo. Nulla lacinia, urna eget fringilla finibus, augue erat tristique ante, a convallis arcu lectus vel velit. Etiam fermentum condimentum lorem. Phasellus sagittis arcu non aliquet molestie. Maecenas placerat venenatis enim. Aliquam purus turpis, molestie ultricies turpis in, congue bibendum mi. Nulla vel elementum nisl, hendrerit luctus diam.</p>
+            </div>
+        </div>
+    </body>
+</html>
