@@ -3,7 +3,14 @@
     <head>
         <title>Category Page</title>
         <meta charset="utf-8">
-        <link rel="stylesheet" type="text/css" href="template-category-page.css">
+        <link rel="stylesheet" type="text/css" href="../css/template-category-page.css">
+        <link href="../css/navbarStyle.css" rel="stylesheet">
+
+        <!-- bootstrap5 https://getbootstrap.com/docs/5.0/getting-started/introduction/ -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+        <!-- jquery from google https://developers.google.com/speed/libraries -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script>
 
@@ -35,16 +42,23 @@
         </script>
     </head>
     <body>
+        <div id="navContainer" class="container">
+            <nav id="navbar" class="navbar">
+                <div class="container-fluid">
+                    <a id="navbarHomeLink" class="navbar-brand" href="../index.html">Home</a>
+                </div>
+            </nav>
+        </div>
         <div id="categoryPageWrapper">
             <div class="endOptionsContainer">
                 <h2 class="endTitle" onclick="expand('end1Info')">Heat Death</h2>
-                <p id="end1Info" class="endInfo" hidden>"If the Universe holds enough matter, including dark matter, the combined gravitational attraction of everything will gradually halt this expansion and precipitate the ultimate collapse. Over time, galaxies, then individual stars, will smash into each other more frequently, killing off any life on nearby planets. In the final moments, as densities and temperatures soar in a contracting inferno, all that remains will extinguish in a single point." - Jaime Trosper</p>
+                <p id="end1Info" class="endInfo" hidden>"In this scenario, the universe continues to expand at an ever-increasing speed. As this happens, the heat is dispersed throughout space while galaxies, stars, and planets are all pulled farther and farther from one another. In the very distant future, intelligent civilizations will look into the sky and think they are alone. Everything will be so far away that the light from distant stars and galaxies can never reach them." - Jaime Trosper</p>
                 <h2 class="endTitle" onclick="expand('end2Info')">Big Crunch</h2>
                 <p id="end2Info" class="endInfo" hidden>"If the Universe holds enough matter, including dark matter, the combined gravitational attraction of everything will gradually halt this expansion and precipitate the ultimate collapse. Over time, galaxies, then individual stars, will smash into each other more frequently, killing off any life on nearby planets. In the final moments, as densities and temperatures soar in a contracting inferno, all that remains will extinguish in a single point." - Ramin Skibba</p>
                 <h2 class="endTitle" onclick="expand('end3Info')">Big Slurp</h2>
                 <p id="end3Info" class="endInfo" hidden>"Our universe might experience a catastrophic event when a “bubble” from another alternate universe appears in ours. If this bubble exists in a lower-energy state than our bubble. the universe could be completely annihilated.
 
-In essence, it would cause all the protons in all matter in our universe to decay. By proxy, so would we. If that doesn’t sound unpleasant enough, this sort of a vacuum metastability event could happen at virtually any moment, anywhere in our universe. The bubble could pop over and start expanding at light-speed until it swallowed us entirely." - Jaime Trosper</p>
+                In essence, it would cause all the protons in all matter in our universe to decay. By proxy, so would we. If that doesn’t sound unpleasant enough, this sort of a vacuum metastability event could happen at virtually any moment, anywhere in our universe. The bubble could pop over and start expanding at light-speed until it swallowed us entirely." - Jaime Trosper</p>
             </div>
         </div>
     </body>

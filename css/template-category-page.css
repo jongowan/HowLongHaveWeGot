@@ -4,3 +4,9 @@
 .endTitle:hover{
     color: purple;
 }
+#homeTitle{
+    text-align: center;
+}
+.card{
+    margin-right: 2%;
+}
