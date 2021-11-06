@@ -1,9 +1,37 @@
-.endInfo{
-    
+.endInfo {
 }
-.endTitle:hover{
-    color: purple;
+.endTitle:hover {
+  color: purple;
 }
-#homeTitle{
-    text-align: center;
+#homeTitle {
+  text-align: center;
+  animation: movedown 1s linear 1;
+}
+
+.card {
+  animation: moveright 1s linear 1;
+  visibility: hidden;
+  animation-fill-mode: both;
+}
+
+@keyframes movedown {
+  0% {
+    transform: translateY(-100px);
+    visibility: visible;
+  }
+  100% {
+    transform: translateY(0);
+    visibility: visible;
+  }
+}
+
+@keyframes moveright {
+  0% {
+    transform: translateX(-500px);
+    visibility: visible;
+  }
+  100% {
+    transform: translateX(0);
+    visibility: visible;
+  }
 }
