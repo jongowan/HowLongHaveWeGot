@@ -6,39 +6,10 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <link rel="stylesheet" type="text/css" href="../css/template-category-page.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
-        <script>
-
-            function expand(idString) {
-                switch (idString)
-                {
-                    case "end1Info":
-                    case "end2Info":
-                    case "end3Info":
-                        if ($("#" + idString).attr("hidden") == "hidden")
-                        {
-                            close();
-                            $("#" + idString).removeAttr("hidden");
-                        }
-                        else
-                        {
-                            close();
-                        }
-                        break;
-                    default:
-                        break;
-                }
-            }
-
-            function close() {
-                $(".endInfo").attr("hidden", "hidden");
-            }
-
-        </script>
     </head>
     <body>
         <h1 id="homeTitle">World Ending Events</h1>
-        <div class="card" style="width: 18rem;">
+        <div class="card float-left" style="width: 18rem;">
           <img class="card-img-top" src="../images/earth.jpg" alt="Card image cap">
           <div class="card-body">
             <h5 class="card-title">Earth Level</h5>
@@ -46,7 +17,7 @@
             <a href="earth.html" class="btn btn-primary">Go to Page</a>
           </div>
         </div>
-        <div class="card" style="width: 18rem;">
+        <div class="card float-left" style="width: 18rem;">
           <img class="card-img-top" src="../images/universe.jpg" alt="Card image cap">
           <div class="card-body">
             <h5 class="card-title">Universe Level</h5>
