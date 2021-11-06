@@ -12,6 +12,7 @@
   animation: moveright 1s linear 1;
   visibility: hidden;
   animation-fill-mode: both;
+  margin-right: 2%;
 }
 
 @keyframes movedown {

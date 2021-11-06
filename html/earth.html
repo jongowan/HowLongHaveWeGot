@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Earth Page</title>
+        <meta charset="utf-8">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script>
+
+            function expand(idString) {
+                switch (idString)
+                {
+                    case "end1Info":
+                    case "end2Info":
+                    case "end3Info":
+                        if ($("#" + idString).attr("hidden") == "hidden")
+                        {
+                            close();
+                            $("#" + idString).removeAttr("hidden");
+                        }
+                        else
+                        {
+                            close();
+                        }
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            function close() {
+                $(".endInfo").attr("hidden", "hidden");
+            }
+
+        </script>
+    </head>
+    <body>
+        <div id="categoryPageWrapper">
+            <div class="endOptionsContainer">
+                <h2 class="endTitle" onclick="expand('end1Info')">Death by Global Warming</h2>
+                <p id="end1Info" class="endInfo" hidden>Do to the recent invovement of humanity in the recent century, Earth's Global Warming is going out of control. Global warming has sped up by 10% and Earth can't keep up. This causes the temperature to rise even faster. If global warming is not taken care of by the year 2100, Earth's high temperatures wil leave high water levels, little livable land, poisonous water, mass human deaths,  agriculture problems, and food  storages. In the end, people will just end up taking each other out or die to heat. This will probabily be your great, great, great, great grandchilderen's turn to die (if your bloodline even makes it that far).</p>
+
+                <!--https://earthobservatory.nasa.gov/features/GlobalWarming
+                    https://news.stanford.edu/news/2013/august/climate-change-speed-080113.html
+                    https://en.wikipedia.org/wiki/Climate_apocalypse
+                    https://www.livescience.com/climate-change-humans-extinct.html 
+                -->
+
+                <h2 class="endTitle" onclick="expand('end2Info')">Death by the Sun</h2>
+                <p id="end2Info" class="endInfo" hidden>When the Sun begins to die and turn into a red gaint, the Sun will lose stability and start growing in size. While the Sun is getting bigger, it is also getting hotter. In about about 2 billion years (if we are lucky) the oceans will be boiling and all lives on Earth will cease to exist. In about 7.5 billion years the Sun will swallow the earth whole and it'll be officialy over. But you'll be dead way before then :) </p>
+
+                <!--https://www.forbes.com/sites/startswithabang/2020/02/08/ask-ethan-will-the-earth-eventually-be-swallowed-by-the-sun/?sh=298345aa5cb0
+                    https://en.wikipedia.org/wiki/Future_of_Earth
+                 -->
+
+                <h2 class="endTitle" onclick="expand('end3Info')">Death by Comet</h2>
+                <p id="end3Info" class="endInfo" hidden>There are many asteroids in the outer space that could wipe us out if it struck Earth. But a particular asteroid named Bennu, is the most likly to collide with Earth. Using data from  NASA's OSIRIS-REx spacecraft it was calculated that on the day of September 24, 2182 Bennu has the highest chance to hit Earth with the odds of 1-in-2700.</p>
+
+                <!--https://www.nationalgeographic.com/science/article/nasa-osiris-rex-spacecraft-finds-asteroid-bennu-slightly-more-likely-to-hit-earth -->
+            </div>
+        </div>
+    </body>
+</html>
