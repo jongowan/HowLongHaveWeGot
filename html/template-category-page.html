@@ -1,14 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Category Page</title>
-    <meta charset="utf-8" />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="../css/template-category-page.css"
-    />
-    <link href="../css/navbarStyle.css" rel="stylesheet" />
+    <head>
+        <title>Category Page</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="../css/template-category-page.css">
+        <link href="../css/navbarStyle.css" rel="stylesheet">
+        <link href="../css/timerStyle.css" rel="stylesheet">
 
     <!-- bootstrap5 https://getbootstrap.com/docs/5.0/getting-started/introduction/ -->
     <link
@@ -22,6 +19,122 @@
       integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
       crossorigin="anonymous"
     ></script>
+
+        <!-- jquery from google https://developers.google.com/speed/libraries -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script>
+            var timerIDString = "";
+
+            setInterval(function() {
+                updateTimer(timerIDString);
+            }, 1000);
+
+            function expand(idString) {
+                switch (idString)
+                {
+                    case "end1Info":
+                    case "end2Info":
+                    case "end3Info":
+                        if ($("#" + idString).attr("hidden") == "hidden")
+                        {
+                            close();
+                            $("#" + idString).removeAttr("hidden");
+                            displayTimer(idString);
+                        }
+                        else
+                        {
+                            close();
+                        }
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            function close() {
+                $(".endInfo").attr("hidden", "hidden");
+                $("#timerText").attr("hidden", "hidden");
+            }
+
+            function displayTimer(idString) {
+                $("#timerText").removeAttr("hidden");
+                timerIDString = idString;
+            }
+
+            function updateTimer(idString) {
+                if (idString != "")
+                {
+                    var endDate = getEndDate(idString);
+                    var timeLeft = getTimeLeft(endDate);
+                    var timeAsString = getTimeString(timeLeft);
+
+                    $("#timerText").html(timeAsString);
+                }
+            }
+
+            function getEndDate(idString) {
+                switch (idString) {
+                    case "end1Info":
+                        return createDate(1000000, 0, 0, 0, 0, 0);
+                    case "end2Info":
+                        return createDate(2000000, 0, 0, 0, 0, 0);
+                    case "end3Info":
+                        return createDate(3000000, 0, 0, 0, 0, 0);
+                    default:
+                        return Date.now;
+                }
+            }
+
+            function createDate(year, month, day, hours, minutes, seconds) {
+                var date = new Array(6);
+                date[0] = year;
+                date[1] = month;
+                date[2] = day;
+                date[3] = hours;
+                date[4] = minutes;
+                date[5] = seconds;
+                return date;
+            }
+
+            function getTimeLeft(date) {
+                var now = new Date();
+                var adjustedDate = new Array(6);
+                adjustedDate[5] = date[5] - now.getUTCSeconds();
+                adjustedDate[4] = date[4] - now.getUTCMinutes();
+                adjustedDate[3] = date[3] - now.getUTCHours();
+                adjustedDate[2] = date[2] - now.getUTCDay();
+                adjustedDate[1] = date[1] - now.getUTCMonth();
+                adjustedDate[0] = date[0] - now.getUTCFullYear();
+                if (adjustedDate[5] <= 0)
+                {
+                    adjustedDate[5] += 60;
+                    adjustedDate[4] += 1;
+                }
+                if (adjustedDate[4] <= 0)
+                {
+                    adjustedDate[4] += 60;
+                    adjustedDate[3] += 1;
+                }
+                if (adjustedDate[3] <= 0)
+                {
+                    adjustedDate[3] += 24;
+                    adjustedDate[2] += 1;
+                }
+                if (adjustedDate[2] <= 0)
+                {
+                    adjustedDate[2] += 30;
+                    adjustedDate[1] += 1;
+                }
+                if (adjustedDate[1] <= 0)
+                {
+                    adjustedDate[1] += 12;
+                    adjustedDate[0] += 1;
+                }
+                return adjustedDate;
+            }
+
+            function getTimeString(time) {
+                return time[0] + " years, " + time[1] + " months, " + time[2] + " days, " + time[3] + " hours, " + time[4] + " minutes, " + time[5] + " seconds";
 
     <!-- jquery from google https://developers.google.com/speed/libraries -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -43,6 +156,28 @@
         }
       }
 
+        </script>
+    </head>
+    <body>
+        <div id="navContainer" class="container">
+            <nav id="navbar" class="navbar">
+                <div class="container-fluid">
+                    <a id="navbarHomeLink" class="navbar-brand" href="index.html">Home</a>
+                </div>
+            </nav>
+        </div>
+        <div id="categoryPageWrapper">
+            <div class="endOptionsContainer">
+                <h2 class="endTitle" onclick="expand('end1Info')">End 1</h2>
+                <p id="end1Info" class="endInfo" hidden>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque lobortis, nunc id ultrices rutrum, augue ligula semper nulla, eget scelerisque urna lacus in leo. Nulla lacinia, urna eget fringilla finibus, augue erat tristique ante, a convallis arcu lectus vel velit. Etiam fermentum condimentum lorem. Phasellus sagittis arcu non aliquet molestie. Maecenas placerat venenatis enim. Aliquam purus turpis, molestie ultricies turpis in, congue bibendum mi. Nulla vel elementum nisl, hendrerit luctus diam.</p>
+                <h2 class="endTitle" onclick="expand('end2Info')">End 2</h2>
+                <p id="end2Info" class="endInfo" hidden>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque lobortis, nunc id ultrices rutrum, augue ligula semper nulla, eget scelerisque urna lacus in leo. Nulla lacinia, urna eget fringilla finibus, augue erat tristique ante, a convallis arcu lectus vel velit. Etiam fermentum condimentum lorem. Phasellus sagittis arcu non aliquet molestie. Maecenas placerat venenatis enim. Aliquam purus turpis, molestie ultricies turpis in, congue bibendum mi. Nulla vel elementum nisl, hendrerit luctus diam.</p>
+                <h2 class="endTitle" onclick="expand('end3Info')">End 3</h2>
+                <p id="end3Info" class="endInfo" hidden>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque lobortis, nunc id ultrices rutrum, augue ligula semper nulla, eget scelerisque urna lacus in leo. Nulla lacinia, urna eget fringilla finibus, augue erat tristique ante, a convallis arcu lectus vel velit. Etiam fermentum condimentum lorem. Phasellus sagittis arcu non aliquet molestie. Maecenas placerat venenatis enim. Aliquam purus turpis, molestie ultricies turpis in, congue bibendum mi. Nulla vel elementum nisl, hendrerit luctus diam.</p>
+            </div>
+            <div id="timerContainer">
+                <h1 id="timerText" hidden></h1>
+            </div>
       function close() {
         $(".endInfo").attr("hidden", "hidden");
       }
