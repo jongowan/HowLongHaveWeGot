@@ -36,3 +36,12 @@
     visibility: visible;
   }
 }
+#audio{
+    width: 50%;
+    margin-left: 25%;
+    margin-right: 25%;;
+}
+#musicTitle{
+    clear: left;
+    text-align: center;
+}
