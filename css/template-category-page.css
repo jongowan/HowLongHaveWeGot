@@ -1,19 +1,31 @@
+#homeTitle {
+  text-align: center;
+  animation: movedown 1.5s linear 1;
+  color: white;
+}
+
+#audio{
+    width: 50%;
+    margin-left: 25%;
+    margin-right: 25%;;
+}
+
+#musicTitle{
+    clear: left;
+    text-align: center;
+}
+
 .endInfo {
   color: white;
 }
 
 .endTitle {
   color: white;
+  text-align: center;
 }
 
 .endTitle:hover {
   color: purple;
-}
-
-#homeTitle {
-  text-align: center;
-  animation: movedown 1.5s linear 1;
-  color: white;
 }
 
 .card {

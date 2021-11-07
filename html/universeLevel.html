@@ -42,27 +42,22 @@
             break;
         }
       }
-
+      
       function close() {
         $(".endInfo").attr("hidden", "hidden");
       }
     </script>
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="../css/template-category-page.css"
-    />
   </head>
   <body>
     <div class="stars"></div>
     <div class="twinkling"></div>
     <div id="navContainer" class="container">
       <nav id="navbar" class="navbar">
-        <div class="container-fluid">
-          <a id="navbarHomeLink" class="navbar-brand" href="../index.html"
-            >Home</a
-          >
-        </div>
+          <div class="container-fluid">
+              <a id="navbarHomeLink" class="navbar-brand" href="../index.html">Home</a>
+              <a class="navbar-brand" href="earth.html">Earth</a>
+              <a class="navbar-brand" href="universeLevel.html">Universe</a>
+          </div>
       </nav>
     </div>
     <div id="categoryPageWrapper">
@@ -101,5 +96,9 @@
         </p>
       </div>
     </div>
+    <h1 id="musicTitle">Music for Your Browsing Pleasure</h1>
+    <audio autoplay loop controls id="audio">
+      <source src="audio/spaceAmbient.mp3">
+    </audio>
   </body>
 </html>
