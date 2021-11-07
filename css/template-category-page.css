@@ -3,6 +3,9 @@
 .endTitle:hover {
   color: purple;
 }
+.endTitle{
+    text-align: center;
+}
 #homeTitle {
   text-align: center;
   animation: movedown 1s linear 1;
