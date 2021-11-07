@@ -11,7 +11,7 @@
 }
 
 #musicTitle{
-    margin-top: 50vh;
+    margin-top: 20vh;
     font-size: 36px;
     clear: left;
     text-align: center;
@@ -20,6 +20,16 @@
 
 .endInfo {
   color: white;
+}
+
+#current{
+    font-size: 36px;
+}
+
+.endOptionsContainer{
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .endTitle {

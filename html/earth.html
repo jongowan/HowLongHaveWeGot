@@ -65,6 +65,9 @@ function updateTimer(idString) {
         var timeAsString = getTimeString(timeLeft);
 
         $("#timerText").html(timeAsString);
+        $('#timerText').css("text-align", "center");
+        $('#timerText').css("color", "white");
+        $('#timerText').css("margin-top", "20vh");
     }
 }
 
@@ -146,7 +149,7 @@ $("#timerText").attr("hidden", "hidden");
       <nav id="navbar" class="navbar">
           <div class="container-fluid">
               <a id="navbarHomeLink" class="navbar-brand" href="../index.html">Home</a>
-              <a class="navbar-brand" href="earth.html">Earth</a>
+              <a id="current" class="navbar-brand" href="earth.html">Earth</a>
               <a class="navbar-brand" href="universeLevel.html">Universe</a>
           </div>
       </nav>
