@@ -4,10 +4,10 @@
   color: white;
 }
 
-#audio{
-    width: 25%;
-    margin-left: 37%;
-    margin-right: 37%;;
+#audio {
+  width: 25%;
+  margin-left: 37%;
+  margin-right: 37%;
 }
 
 #musicTitle{
@@ -16,6 +16,7 @@
     clear: left;
     text-align: center;
     color: white;
+
 }
 
 .endInfo {
