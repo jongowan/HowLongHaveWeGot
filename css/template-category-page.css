@@ -10,16 +10,27 @@
   margin-right: 37%;
 }
 
-#musicTitle {
-  margin-top: 50vh;
-  font-size: 36px;
-  clear: left;
-  text-align: center;
-  color: white;
+#musicTitle{
+    margin-top: 20vh;
+    font-size: 36px;
+    clear: left;
+    text-align: center;
+    color: white;
+
 }
 
 .endInfo {
   color: white;
+}
+
+#current{
+    font-size: 36px;
+}
+
+.endOptionsContainer{
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .endTitle {

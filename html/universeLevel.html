@@ -77,12 +77,18 @@ function updateTimer(idString) {
         if (endDate == 0)
         {
           $("#timerText").html(0 + " years, " + 0 + " months, " + 0 + " days, " + 0 + " hours, " + 0 + " minutes, " + 0 + " seconds");
+            $('#timerText').css("text-align", "center");
+            $('#timerText').css("margin-top", "20vh");
+            $("#timerText").css("color", "red");
           return;
         }
         var timeLeft = getTimeLeft(endDate);
         var timeAsString = getTimeString(timeLeft);
 
         $("#timerText").html(timeAsString);
+        $('#timerText').css("text-align", "center");
+        $('#timerText').css("color", "white");
+        $('#timerText').css("margin-top", "20vh");
     }
 }
 
@@ -164,7 +170,7 @@ $("#timerText").attr("hidden", "hidden");
           <div class="container-fluid">
               <a id="navbarHomeLink" class="navbar-brand" href="../index.html">Home</a>
               <a class="navbar-brand" href="earth.html">Earth</a>
-              <a class="navbar-brand" href="universeLevel.html">Universe</a>
+              <a id="current" class="navbar-brand" href="universeLevel.html">Universe</a>
           </div>
       </nav>
     </div>
