@@ -1,194 +1,176 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Earth Page</title>
-    <meta charset="utf-8" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="../css/template-category-page.css"
-    />
-      <!-- bootstrap5 https://getbootstrap.com/docs/5.0/getting-started/introduction/ -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-      crossorigin="anonymous"
-    />
+    <head>
+        <title>Earth Page</title>
+        <meta charset="utf-8" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="../css/template-category-page.css">
+        <!-- bootstrap5 https://getbootstrap.com/docs/5.0/getting-started/introduction/ -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <link href="../css/navbarStyle.css" rel="stylesheet">
+        <script>
+            var timerIDString = "";
 
-    <link href="../css/navbarStyle.css" rel="stylesheet">
-    <script>
-      var timerIDString = "";
+            setInterval(function() {
+                updateTimer(timerIDString);
+            }, 1000);
 
-setInterval(function() {
-    updateTimer(timerIDString);
-}, 1000);
-
-function expand(idString) {
-    switch (idString)
-    {
-        case "end1Info":
-        case "end2Info":
-        case "end3Info":
-            if ($("#" + idString).attr("hidden") == "hidden")
-            {
-                close();
-                $("#" + idString).removeAttr("hidden");
-                displayTimer(idString);
+            function expand(idString) {
+                switch (idString)
+                {
+                    case "end1Info":
+                    case "end2Info":
+                    case "end3Info":
+                        if ($("#" + idString).attr("hidden") == "hidden")
+                        {
+                            close();
+                            $("#" + idString).removeAttr("hidden");
+                            displayTimer(idString);
+                        }
+                        else
+                        {
+                            close();
+                        }
+                        break;
+                    default:
+                        break;
+                }
             }
-            else
-            {
-                close();
+
+            function close() {
+                $(".endInfo").attr("hidden", "hidden");
+                $("#timerText").attr("hidden", "hidden");
             }
-            break;
-        default:
-            break;
-    }
-}
 
-function close() {
-    $(".endInfo").attr("hidden", "hidden");
-    $("#timerText").attr("hidden", "hidden");
-}
+            function displayTimer(idString) {
+                $("#timerText").removeAttr("hidden");
+                timerIDString = idString;
+            }
 
-function displayTimer(idString) {
-    $("#timerText").removeAttr("hidden");
-    timerIDString = idString;
-}
+            function updateTimer(idString) {
+                if (idString != "")
+                {
+                    var endDate = getEndDate(idString);
+                    var timeLeft = getTimeLeft(endDate);
+                    var timeAsString = getTimeString(timeLeft);
 
-function updateTimer(idString) {
-    if (idString != "")
-    {
-        var endDate = getEndDate(idString);
-        var timeLeft = getTimeLeft(endDate);
-        var timeAsString = getTimeString(timeLeft);
+                    $("#timerText").html(timeAsString);
+                }
+            }
 
-        $("#timerText").html(timeAsString);
-    }
-}
+            function getEndDate(idString) {
+                switch (idString) {
+                    case "end1Info":
+                        return createDate(2100, 0, 0, 0, 0, 0);
+                    case "end2Info":
+                        return createDate(2000000000, 0, 0, 0, 0, 0);
+                    case "end3Info":
+                        return createDate(2182, 9, 24, 0, 0, 0);
+                    default:
+                        return Date.now;
+                }
+            }
 
-function getEndDate(idString) {
-    switch (idString) {
-        case "end1Info":
-            return createDate(2100, 0, 0, 0, 0, 0);
-        case "end2Info":
-            return createDate(2000000000, 0, 0, 0, 0, 0);
-        case "end3Info":
-            return createDate(2182, 9, 24, 0, 0, 0);
-        default:
-            return Date.now;
-    }
-}
+            function createDate(year, month, day, hours, minutes, seconds) {
+                var date = new Array(6);
+                date[0] = year;
+                date[1] = month;
+                date[2] = day;
+                date[3] = hours;
+                date[4] = minutes;
+                date[5] = seconds;
+                return date;
+            }
 
-function createDate(year, month, day, hours, minutes, seconds) {
-    var date = new Array(6);
-    date[0] = year;
-    date[1] = month;
-    date[2] = day;
-    date[3] = hours;
-    date[4] = minutes;
-    date[5] = seconds;
-    return date;
-}
+            function getTimeLeft(date) {
+                var now = new Date();
+                var adjustedDate = new Array(6);
+                adjustedDate[5] = date[5] - now.getUTCSeconds();
+                adjustedDate[4] = date[4] - now.getUTCMinutes();
+                adjustedDate[3] = date[3] - now.getUTCHours();
+                adjustedDate[2] = date[2] - now.getUTCDay();
+                adjustedDate[1] = date[1] - now.getUTCMonth();
+                adjustedDate[0] = date[0] - now.getUTCFullYear();
+                if (adjustedDate[5] <= 0)
+                {
+                    adjustedDate[5] += 60;
+                    adjustedDate[4] += 1;
+                }
+                if (adjustedDate[4] <= 0)
+                {
+                    adjustedDate[4] += 60;
+                    adjustedDate[3] += 1;
+                }
+                if (adjustedDate[3] <= 0)
+                {
+                    adjustedDate[3] += 24;
+                    adjustedDate[2] += 1;
+                }
+                if (adjustedDate[2] <= 0)
+                {
+                    adjustedDate[2] += 30;
+                    adjustedDate[1] += 1;
+                }
+                if (adjustedDate[1] <= 0)
+                {
+                    adjustedDate[1] += 12;
+                    adjustedDate[0] += 1;
+                }
+                return adjustedDate;
+            }
 
-function getTimeLeft(date) {
-    var now = new Date();
-    var adjustedDate = new Array(6);
-    adjustedDate[5] = date[5] - now.getUTCSeconds();
-    adjustedDate[4] = date[4] - now.getUTCMinutes();
-    adjustedDate[3] = date[3] - now.getUTCHours();
-    adjustedDate[2] = date[2] - now.getUTCDay();
-    adjustedDate[1] = date[1] - now.getUTCMonth();
-    adjustedDate[0] = date[0] - now.getUTCFullYear();
-    if (adjustedDate[5] <= 0)
-    {
-        adjustedDate[5] += 60;
-        adjustedDate[4] += 1;
-    }
-    if (adjustedDate[4] <= 0)
-    {
-        adjustedDate[4] += 60;
-        adjustedDate[3] += 1;
-    }
-    if (adjustedDate[3] <= 0)
-    {
-        adjustedDate[3] += 24;
-        adjustedDate[2] += 1;
-    }
-    if (adjustedDate[2] <= 0)
-    {
-        adjustedDate[2] += 30;
-        adjustedDate[1] += 1;
-    }
-    if (adjustedDate[1] <= 0)
-    {
-        adjustedDate[1] += 12;
-        adjustedDate[0] += 1;
-    }
-    return adjustedDate;
-}
+            function getTimeString(time) {
+                return time[0] + " years, " + time[1] + " months, " + time[2] + " days, " + time[3] + " hours, " + time[4] + " minutes, " + time[5] + " seconds";
+            }
+            function close() {
+                $(".endInfo").attr("hidden", "hidden");
+                $("#timerText").attr("hidden", "hidden");
+            }
+        </script>
+    </head>
+    <body>
+        <div class="stars"></div>
+        <div class="twinkling"></div>
+        <div class="clouds"></div>
+        <div id="navContainer" class="container">
+        <nav id="navbar" class="navbar">
+            <div class="container-fluid">
+                <a id="navbarHomeLink" class="navbar-brand" href="../index.html">Home</a>
+                <a class="navbar-brand" href="earth.html">Earth</a>
+                <a class="navbar-brand" href="universeLevel.html">Universe</a>
+            </div>
+        </nav>
+        </div>
+        <div id="categoryPageWrapper">
+        <div class="endOptionsContainer">
+            <h2 class="endTitle" onclick="expand('end1Info')">Death by Global Warming</h2>
+            <p id="end1Info" class="endInfo" hidden>Due to all of the pollution created in the last century, Earth's Global Warming is currently in a critical state. Global warming has sped up by 10% and our situation is rapidly becoming worse. If global warming is not significantly reduced by the year 2100, Earth's high temperatures wil result in raised sea levels, a substantial decrease in habitable lands, less drinking water, many more human deaths, and mass food shortages.</p>
 
-function getTimeString(time) {
-    return time[0] + " years, " + time[1] + " months, " + time[2] + " days, " + time[3] + " hours, " + time[4] + " minutes, " + time[5] + " seconds";
-}
-function close() {
-$(".endInfo").attr("hidden", "hidden");
-$("#timerText").attr("hidden", "hidden");
-}
-          </script>
-  </head>
-  <body>
-    <div class="stars"></div>
-    <div class="twinkling"></div>
-    <div class="clouds"></div>
-    <div id="navContainer" class="container">
-      <nav id="navbar" class="navbar">
-          <div class="container-fluid">
-              <a id="navbarHomeLink" class="navbar-brand" href="../index.html">Home</a>
-              <a class="navbar-brand" href="earth.html">Earth</a>
-              <a class="navbar-brand" href="universeLevel.html">Universe</a>
-          </div>
-      </nav>
+            <!--https://earthobservatory.nasa.gov/features/GlobalWarming
+                https://news.stanford.edu/news/2013/august/climate-change-speed-080113.html
+                https://en.wikipedia.org/wiki/Climate_apocalypse
+                https://www.livescience.com/climate-change-humans-extinct.html 
+            -->
+
+            <h2 class="endTitle" onclick="expand('end2Info')">Death by the Sun</h2>
+            <p id="end2Info" class="endInfo" hidden>When the Sun begins to die and turn into a red gaint, it will lose stability and start ballooning in size. While this is happening, its temperature will also continue to increase. In about about 2 billion years, at the latest, the oceans will be boiling and the earth will no longer be hospitable to life. In about 7.5 billion years the Sun will have completely evaporated the earth.</p>
+
+            <!--https://www.forbes.com/sites/startswithabang/2020/02/08/ask-ethan-will-the-earth-eventually-be-swallowed-by-the-sun/?sh=298345aa5cb0
+                https://en.wikipedia.org/wiki/Future_of_Earth
+            -->
+
+            <h2 class="endTitle" onclick="expand('end3Info')">Death by Comet</h2>
+            <p id="end3Info" class="endInfo" hidden>in outer space that have the potential to threaten the viability of life on earth. The most likely of these to hit earth is an asteroid called Bennu. Using data from  NASA's OSIRIS-REx spacecraft it was calculated that on the day of September 24, 2182 Bennu has the highest chance to hit Earth with the odds of 1-in-2700. This number may sound small, but when it comes to extinction level events, such a probability is actually fairly significant.</p>
+
+            <!--https://www.nationalgeographic.com/science/article/nasa-osiris-rex-spacecraft-finds-asteroid-bennu-slightly-more-likely-to-hit-earth -->
+        </div>
+        </div>
+        <div id="timerContainer">
+        <h1 id="timerText" hidden></h1>
     </div>
-    <div id="categoryPageWrapper">
-      <div class="endOptionsContainer">
-        <h2 class="endTitle" onclick="expand('end1Info')">
-          Death by Global Warming
-        </h2>
-        <p id="end1Info" class="endInfo" hidden>
-         Due to all of the pollution created in the last century, Earth's Global Warming is currently in a critical state. Global warming has sped up by 10% and our situation is rapidly becoming worse. If global warming is not significantly reduced by the year 2100, Earth's high temperatures wil result in raised sea levels, a substantial decrease in habitable lands, less drinking water, many more human deaths, and mass food shortages.
-        </p>
-
-        <!--https://earthobservatory.nasa.gov/features/GlobalWarming
-            https://news.stanford.edu/news/2013/august/climate-change-speed-080113.html
-            https://en.wikipedia.org/wiki/Climate_apocalypse
-            https://www.livescience.com/climate-change-humans-extinct.html 
-        -->
-
-        <h2 class="endTitle" onclick="expand('end2Info')">Death by the Sun</h2>
-        <p id="end2Info" class="endInfo" hidden>
-         When the Sun begins to die and turn into a red gaint, it will lose stability and start ballooning in size. While this is happening, its temperature will also continue to increase. In about about 2 billion years, at the latest, the oceans will be boiling and the earth will no longer be hospitable to life. In about 7.5 billion years the Sun will have completely evaporated the earth.
-        </p>
-
-        <!--https://www.forbes.com/sites/startswithabang/2020/02/08/ask-ethan-will-the-earth-eventually-be-swallowed-by-the-sun/?sh=298345aa5cb0
-            https://en.wikipedia.org/wiki/Future_of_Earth
-        -->
-
-        <h2 class="endTitle" onclick="expand('end3Info')">Death by Comet</h2>
-        <p id="end3Info" class="endInfo" hidden>
-          in outer space that have the potential to threaten the viability of life on earth. The most likely of these to hit earth is an asteroid called Bennu. Using data from  NASA's OSIRIS-REx spacecraft it was calculated that on the day of September 24, 2182 Bennu has the highest chance to hit Earth with the odds of 1-in-2700. This number may sound small, but when it comes to extinction level events, such a probability is actually fairly significant.
-        </p>
-
-        <!--https://www.nationalgeographic.com/science/article/nasa-osiris-rex-spacecraft-finds-asteroid-bennu-slightly-more-likely-to-hit-earth -->
-      </div>
-    </div>
-    <div id="timerContainer">
-      <h1 id="timerText" hidden></h1>
-  </div>
-    <h1 id="musicTitle">Music for Your Browsing Pleasure</h1>
-      <audio autoplay loop controls id="audio">
-          <source src="../audio/spaceAmbient.mp3">
-      </audio>
-  </body>
+        <h1 id="musicTitle">Music for Your Browsing Pleasure</h1>
+        <audio autoplay loop controls id="audio">
+            <source src="../audio/spaceAmbient.mp3">
+        </audio>
+    </body>
 </html>
