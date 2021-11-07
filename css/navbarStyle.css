@@ -5,3 +5,7 @@
     background-color: black;
     width: 100%;
 }
+
+.container-fluid .navbar-brand {
+    color: #0d6efd;
+}
