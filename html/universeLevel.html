@@ -3,11 +3,7 @@
   <head>
     <title>Category Page</title>
     <meta charset="utf-8" />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="../css/template-category-page.css"
-    />
+
     <link href="../css/navbarStyle.css" rel="stylesheet" />
 
     <!-- bootstrap5 https://getbootstrap.com/docs/5.0/getting-started/introduction/ -->
@@ -18,9 +14,18 @@
       crossorigin="anonymous"
     />
 
-    <link href="../css/fonts.css" rel="stylesheet" >
+    <link href="../css/fonts.css" rel="stylesheet" />
     <!-- fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron&family=Syncopate&display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron&family=Syncopate&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../css/template-category-page.css"
+    />
 
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
@@ -28,138 +33,159 @@
       crossorigin="anonymous"
     ></script>
 
+    <script language="JavaScript" type="text/javascript">
+      $(document).ready(function () {
+        console.dir($(".carousel"));
+        $(".carousel").carousel({
+          interval: 3000,
+        });
+      });
+    </script>
+
     <!-- jquery from google https://developers.google.com/speed/libraries -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script>
-      
-        var timerIDString = "";
+      var timerIDString = "";
 
-    setInterval(function() {
-    updateTimer(timerIDString);
-}, 1000);
+      setInterval(function () {
+        updateTimer(timerIDString);
+      }, 1000);
 
-function expand(idString) {
-    switch (idString)
-    {
-        case "end1Info":
-        case "end2Info":
-        case "end3Info":
-            if ($("#" + idString).attr("hidden") == "hidden")
-            {
-                close();
-                $("#" + idString).removeAttr("hidden");
-                displayTimer(idString);
-            }
-            else
-            {
-                close();
+      function expand(idString) {
+        switch (idString) {
+          case "end1Info":
+          case "end2Info":
+          case "end3Info":
+            if ($("#" + idString).attr("hidden") == "hidden") {
+              close();
+              $("#" + idString).removeAttr("hidden");
+              $("#" + idString + "Slides").removeAttr("hidden");
+              displayTimer(idString);
+            } else {
+              close();
             }
             break;
-        default:
+          default:
             break;
-    }
-}
-
-function close() {
-    $(".endInfo").attr("hidden", "hidden");
-    $("#timerText").attr("hidden", "hidden");
-}
-
-function displayTimer(idString) {
-    $("#timerText").removeAttr("hidden");
-    timerIDString = idString;
-}
-
-function updateTimer(idString) {
-    if (idString != "")
-    {
-        var endDate = getEndDate(idString);
-        if (endDate == 0)
-        {
-          $("#timerText").html(0 + " years, " + 0 + " months, " + 0 + " days, " + 0 + " hours, " + 0 + " minutes, " + 0 + " seconds");
-            $('#timerText').css("text-align", "center");
-            $('#timerText').css("margin-top", "20vh");
-            $("#timerText").css("color", "red");
-          return;
         }
-        var timeLeft = getTimeLeft(endDate);
-        var timeAsString = getTimeString(timeLeft);
+      }
 
-        $("#timerText").html(timeAsString);
-        $('#timerText').css("text-align", "center");
-        $('#timerText').css("color", "white");
-        $('#timerText').css("margin-top", "20vh");
-    }
-}
+      function close() {
+        $(".endInfo").attr("hidden", "hidden");
+        $("#timerText").attr("hidden", "hidden");
+        $(".carouselSlides").attr("hidden", "hidden");
+      }
 
-function getEndDate(idString) {
-    switch (idString) {
-        case "end1Info":
-            return createDate(1E106, 0, 0, 0, 0, 0);
-        case "end2Info":
+      function displayTimer(idString) {
+        $("#timerText").removeAttr("hidden");
+        timerIDString = idString;
+      }
+
+      function updateTimer(idString) {
+        if (idString != "") {
+          var endDate = getEndDate(idString);
+          if (endDate == 0) {
+            $("#timerText").html(
+              0 +
+                " years, " +
+                0 +
+                " months, " +
+                0 +
+                " days, " +
+                0 +
+                " hours, " +
+                0 +
+                " minutes, " +
+                0 +
+                " seconds"
+            );
+            $("#timerText").css("text-align", "center");
+            $("#timerText").css("margin-top", "20vh");
+            $("#timerText").css("color", "red");
+            return;
+          }
+          var timeLeft = getTimeLeft(endDate);
+          var timeAsString = getTimeString(timeLeft);
+
+          $("#timerText").html(timeAsString);
+          $("#timerText").css("text-align", "center");
+          $("#timerText").css("color", "white");
+          $("#timerText").css("margin-top", "20vh");
+        }
+      }
+
+      function getEndDate(idString) {
+        switch (idString) {
+          case "end1Info":
+            return createDate(1e106, 0, 0, 0, 0, 0);
+          case "end2Info":
             return createDate(100000000000, 0, 0, 0, 0, 0);
-        case "end3Info":
+          case "end3Info":
             return 0;
-        default:
+          default:
             return 0;
-    }
-}
+        }
+      }
 
-function createDate(year, month, day, hours, minutes, seconds) {
-    var date = new Array(6);
-    date[0] = year;
-    date[1] = month;
-    date[2] = day;
-    date[3] = hours;
-    date[4] = minutes;
-    date[5] = seconds;
-    return date;
-}
+      function createDate(year, month, day, hours, minutes, seconds) {
+        var date = new Array(6);
+        date[0] = year;
+        date[1] = month;
+        date[2] = day;
+        date[3] = hours;
+        date[4] = minutes;
+        date[5] = seconds;
+        return date;
+      }
 
-function getTimeLeft(date) {
-    var now = new Date();
-    var adjustedDate = new Array(6);
-    adjustedDate[5] = date[5] - now.getUTCSeconds();
-    adjustedDate[4] = date[4] - now.getUTCMinutes();
-    adjustedDate[3] = date[3] - now.getUTCHours();
-    adjustedDate[2] = date[2] - now.getUTCDay();
-    adjustedDate[1] = date[1] - now.getUTCMonth();
-    adjustedDate[0] = date[0] - now.getUTCFullYear();
-    if (adjustedDate[5] <= 0)
-    {
-        adjustedDate[5] += 60;
-        adjustedDate[4] += 1;
-    }
-    if (adjustedDate[4] <= 0)
-    {
-        adjustedDate[4] += 60;
-        adjustedDate[3] += 1;
-    }
-    if (adjustedDate[3] <= 0)
-    {
-        adjustedDate[3] += 24;
-        adjustedDate[2] += 1;
-    }
-    if (adjustedDate[2] <= 0)
-    {
-        adjustedDate[2] += 30;
-        adjustedDate[1] += 1;
-    }
-    if (adjustedDate[1] <= 0)
-    {
-        adjustedDate[1] += 12;
-        adjustedDate[0] += 1;
-    }
-    return adjustedDate;
-}
+      function getTimeLeft(date) {
+        var now = new Date();
+        var adjustedDate = new Array(6);
+        adjustedDate[5] = date[5] - now.getUTCSeconds();
+        adjustedDate[4] = date[4] - now.getUTCMinutes();
+        adjustedDate[3] = date[3] - now.getUTCHours();
+        adjustedDate[2] = date[2] - now.getUTCDay();
+        adjustedDate[1] = date[1] - now.getUTCMonth();
+        adjustedDate[0] = date[0] - now.getUTCFullYear();
+        if (adjustedDate[5] <= 0) {
+          adjustedDate[5] += 60;
+          adjustedDate[4] += 1;
+        }
+        if (adjustedDate[4] <= 0) {
+          adjustedDate[4] += 60;
+          adjustedDate[3] += 1;
+        }
+        if (adjustedDate[3] <= 0) {
+          adjustedDate[3] += 24;
+          adjustedDate[2] += 1;
+        }
+        if (adjustedDate[2] <= 0) {
+          adjustedDate[2] += 30;
+          adjustedDate[1] += 1;
+        }
+        if (adjustedDate[1] <= 0) {
+          adjustedDate[1] += 12;
+          adjustedDate[0] += 1;
+        }
+        return adjustedDate;
+      }
 
-function getTimeString(time) {
-    return time[0] + " years, " + time[1] + " months, " + time[2] + " days, " + time[3] + " hours, " + time[4] + " minutes, " + time[5] + " seconds";
-}
-function close() {
-$(".endInfo").attr("hidden", "hidden");
-$("#timerText").attr("hidden", "hidden");
-}
+      function getTimeString(time) {
+        return (
+          time[0] +
+          " years, " +
+          time[1] +
+          " months, " +
+          time[2] +
+          " days, " +
+          time[3] +
+          " hours, " +
+          time[4] +
+          " minutes, " +
+          time[5] +
+          " seconds"
+        );
+      }
     </script>
   </head>
   <body>
@@ -167,11 +193,15 @@ $("#timerText").attr("hidden", "hidden");
     <div class="twinkling"></div>
     <div id="navContainer" class="container">
       <nav id="navbar" class="navbar">
-          <div class="container-fluid">
-              <a id="navbarHomeLink" class="navbar-brand" href="../index.html">Home</a>
-              <a class="navbar-brand" href="earth.html">Earth</a>
-              <a id="current" class="navbar-brand" href="universeLevel.html">Universe</a>
-          </div>
+        <div class="container-fluid">
+          <a id="navbarHomeLink" class="navbar-brand" href="../index.html"
+            >Home</a
+          >
+          <a class="navbar-brand" href="earth.html">Earth</a>
+          <a id="current" class="navbar-brand" href="universeLevel.html"
+            >Universe</a
+          >
+        </div>
       </nav>
     </div>
     <div id="categoryPageWrapper">
@@ -186,6 +216,36 @@ $("#timerText").attr("hidden", "hidden");
           alone. Everything will be so far away that the light from distant
           stars and galaxies can never reach them." - Jaime Trosper
         </p>
+        <div
+          id="end1InfoSlides"
+          class="carousel slide carouselSlides"
+          data-bs-ride="carousel"
+          hidden
+        >
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img
+                class="d-block w-100"
+                src="../images/hd1.jpg"
+                alt="First slide"
+              />
+            </div>
+            <div class="carousel-item">
+              <img
+                class="d-block w-100"
+                src="../images/hd2.jpg"
+                alt="Second slide"
+              />
+            </div>
+            <div class="carousel-item">
+              <img
+                class="d-block w-100"
+                src="../images/hd3.jpg"
+                alt="Third slide"
+              />
+            </div>
+          </div>
+        </div>
         <h2 class="endTitle" onclick="expand('end2Info')">Big Crunch</h2>
         <p id="end2Info" class="endInfo" hidden>
           "If the Universe holds enough matter, including dark matter, the
@@ -196,6 +256,36 @@ $("#timerText").attr("hidden", "hidden");
           moments, as densities and temperatures soar in a contracting inferno,
           all that remains will extinguish in a single point." - Ramin Skibba
         </p>
+        <div
+          id="end2InfoSlides"
+          class="carousel slide carouselSlides"
+          data-bs-ride="carousel"
+          hidden
+        >
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img
+                class="d-block w-100"
+                src="../images/crd1.jpg"
+                alt="First slide"
+              />
+            </div>
+            <div class="carousel-item">
+              <img
+                class="d-block w-100"
+                src="../images/crd2.jpg"
+                alt="Second slide"
+              />
+            </div>
+            <div class="carousel-item">
+              <img
+                class="d-block w-100"
+                src="../images/crd3.jpg"
+                alt="Third slide"
+              />
+            </div>
+          </div>
+        </div>
         <h2 class="endTitle" onclick="expand('end3Info')">Big Slurp</h2>
         <p id="end3Info" class="endInfo" hidden>
           "Our universe might experience a catastrophic event when a “bubble”
@@ -208,14 +298,53 @@ $("#timerText").attr("hidden", "hidden");
           The bubble could pop over and start expanding at light-speed until it
           swallowed us entirely." - Jaime Trosper
         </p>
+        <div
+          id="end3InfoSlides"
+          class="carousel slide carouselSlides"
+          data-bs-ride="carousel"
+          hidden
+        >
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img
+                class="d-block w-100"
+                src="../images/bs1.jpg"
+                alt="First slide"
+              />
+            </div>
+            <div class="carousel-item">
+              <img
+                class="d-block w-100"
+                src="../images/bs2.jpg"
+                alt="Second slide"
+              />
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     <div id="timerContainer">
       <h1 id="timerText" hidden></h1>
-  </div>
+    </div>
     <h1 id="musicTitle">Music for Your Browsing Pleasure</h1>
     <audio autoplay loop controls id="audio">
-      <source src="../audio/spaceAmbient.mp3">
+      <source src="../audio/spaceAmbient.mp3" />
     </audio>
+
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>
